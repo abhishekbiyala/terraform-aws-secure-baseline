@@ -30,3 +30,9 @@ variable "delivery_channel_name" {
   description = "The name of the delivery channel."
   default     = "default"
 }
+
+variable "tags" {
+  description = "Key-value mapping of tags"
+  type        = "map"
+  default     = {}
+}

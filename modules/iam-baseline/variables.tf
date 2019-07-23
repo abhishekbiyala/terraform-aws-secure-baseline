@@ -75,3 +75,9 @@ variable "allow_users_to_change_password" {
   description = "Whether to allow users to change their own password."
   default     = true
 }
+
+variable "tags" {
+  description = "Key-value mapping of tags"
+  type        = "map"
+  default     = {}
+}

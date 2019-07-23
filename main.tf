@@ -12,6 +12,7 @@ module "audit_log_bucket" {
   bucket_name                       = "${var.audit_log_bucket_name}"
   log_bucket_name                   = "${var.audit_log_bucket_name}-access-logs"
   lifecycle_glacier_transition_days = "${var.audit_log_lifecycle_glacier_transition_days}"
+  tags                              = "${var.tags}"
 }
 
 resource "aws_s3_bucket_policy" "audit_log_bucket_policy" {
@@ -87,6 +88,7 @@ module "iam_baseline" {
   require_symbols                = "${var.require_symbols}"
   allow_users_to_change_password = "${var.allow_users_to_change_password}"
   max_password_age               = "${var.max_password_age}"
+  tags                           = "${var.tags}"
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -106,6 +108,7 @@ module "cloudtrail_baseline" {
   region                            = "${var.region}"
   s3_bucket_name                    = "${module.audit_log_bucket.this_bucket_id}"
   s3_key_prefix                     = "${var.cloudtrail_s3_key_prefix}"
+  tags                              = "${var.tags}"
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -118,6 +121,7 @@ module "alarm_baseline" {
   alarm_namespace           = "${var.alarm_namespace}"
   cloudtrail_log_group_name = "${module.cloudtrail_baseline.log_group_name}"
   sns_topic_name            = "${var.alarm_sns_topic_name}"
+  tags                      = "${var.tags}"
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -126,4 +130,5 @@ module "alarm_baseline" {
 
 module "securityhub_baseline" {
   source = "./modules/securityhub-baseline"
+  tags   = "${var.tags}"
 }

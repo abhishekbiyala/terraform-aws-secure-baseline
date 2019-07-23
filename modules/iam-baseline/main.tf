@@ -34,6 +34,8 @@ resource "aws_iam_role" "master" {
   ]
 }
 END_OF_POLICY
+
+  tags = "${var.tags}"
 }
 
 resource "aws_iam_role_policy" "master_policy" {
@@ -94,6 +96,8 @@ resource "aws_iam_role" "manager" {
   ]
 }
 END_OF_POLICY
+
+  tags = "${var.tags}"
 }
 
 resource "aws_iam_role_policy" "manager_policy" {
@@ -158,6 +162,8 @@ resource "aws_iam_role" "support" {
   ]
 }
 END_OF_POLICY
+
+  tags = "${var.tags}"
 }
 
 resource "aws_iam_role_policy_attachment" "support_policy" {

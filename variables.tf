@@ -19,6 +19,12 @@ variable "region" {
   description = "The AWS region in which global resources are set up."
 }
 
+variable "tags" {
+  description = "Key-value mapping of tags"
+  type = "map"
+  default = {}
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for iam-baseline module.
 # --------------------------------------------------------------------------------------------------

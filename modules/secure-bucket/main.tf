@@ -14,6 +14,8 @@ resource "aws_s3_bucket" "access_log" {
       storage_class = "GLACIER"
     }
   }
+
+  tags = "${var.tags}"
 }
 
 resource "aws_s3_bucket" "content" {
@@ -49,4 +51,6 @@ resource "aws_s3_bucket" "content" {
       storage_class = "GLACIER"
     }
   }
+
+  tags = "${var.tags}"
 }

@@ -44,3 +44,9 @@ variable "s3_key_prefix" {
   description = "The prefix for the specified S3 bucket."
   default     = ""
 }
+
+variable "tags" {
+  description = "Key-value mapping of tags"
+  type        = "map"
+  default     = {}
+}

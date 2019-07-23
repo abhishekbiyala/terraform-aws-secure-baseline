@@ -5,6 +5,7 @@
 resource "aws_cloudwatch_log_group" "cloudtrail_events" {
   name              = "${var.cloudwatch_logs_group_name}"
   retention_in_days = "${var.cloudwatch_logs_retention_in_days}"
+  tags              = "${var.tags}"
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -31,6 +32,8 @@ resource "aws_iam_role" "cloudwatch_delivery" {
   ]
 }
 END_OF_POLICY
+
+  tags = "${var.tags}"
 }
 
 resource "aws_iam_role_policy" "cloudwatch_delivery_policy" {
@@ -150,6 +153,8 @@ resource "aws_kms_key" "cloudtrail" {
     ]
 }
 END_OF_POLICY
+
+  tags = "${var.tags}"
 }
 
 # --------------------------------------------------------------------------------------------------
@@ -167,4 +172,5 @@ resource "aws_cloudtrail" "global" {
   kms_key_id                    = "${aws_kms_key.cloudtrail.arn}"
   s3_bucket_name                = "${var.s3_bucket_name}"
   s3_key_prefix                 = "${var.s3_key_prefix}"
+  tags                          = "${var.tags}"
 }
